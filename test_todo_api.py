@@ -5,7 +5,7 @@ ENDPOINT = "https://todo.pixegami.io"
 
 
 def test_can_call_endpoint():
-    # check that endpoint is available
+    # check availability of the endpoint
     response = requests.get(ENDPOINT)
     assert response.status_code == 200
 
@@ -18,7 +18,6 @@ def test_can_create_task():
     assert create_task_response.status_code == 200
 
     create_task_data = create_task_response.json()
-#    print(create_task_data)
 
     task_id = create_task_data['task']['task_id']
 
@@ -60,9 +59,7 @@ def test_can_list_tasks():
     user_id = get_payload()['user_id']
     initial_tasks = get_tasks_list(user_id)
     assert initial_tasks.status_code == 200
-#    print(user_id)
     initial_number_tasks = len(initial_tasks.json()['tasks'])
-    print(initial_number_tasks)
     # create N tasks
     n = 3
     for i in range(n):
